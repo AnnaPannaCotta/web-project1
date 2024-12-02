@@ -1,0 +1,56 @@
+.background {
+    background-image: url('../img/background.png');
+    max-width: 100%;
+    position: relative;
+}
+.header {
+    max-width: 1170px;
+    margin: auto;
+}
+.navbar {
+    padding: 20px 15px 20px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    max-width: 1200px;
+}
+.links {
+    display: flex;
+    gap: 20px;
+    list-style: none;  
+}
+.link {
+    text-decoration: none;
+    font-family: Roboto, sans-serif;  
+    font-size: 1rem;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+.link:hover {
+    color: rgb(71, 177, 187);
+}
+.icons {
+    list-style: none; 
+    display: flex;   
+    gap: 10px;  
+}
+.icon__svg {
+    width: 30px;
+    height: 30px;
+    background-color: aliceblue;
+}
+.header-hero {
+    padding: 110px 15px 75px 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+.header__title {
+    color: rgb(255, 255, 255);
+    font-size: clamp(3.375rem, 5vw, 3.75rem);
+    font-family: Roboto, sans-serif;
+    font-weight: 900;
+}
