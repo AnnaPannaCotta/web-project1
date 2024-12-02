@@ -19,28 +19,58 @@ const slides = [
     </div>`,
     ]
 
-    let currIdx = 0;
+   // HTML structure:
+// <div class="carousel">
+//   <div class="slides">
+//     <div class="slide">Slide 1</div>
+//     <div class="slide">Slide 2</div>
+//     <div class="slide">Slide 3</div>
+//     <!-- Add more slides as needed -->
+//   </div>
+// </div>
 
-    function renderCarousel() {
-        const slidesContainer = document.querySelector('.photo-carousel__slides');
-        slidesContainer.innerHTML = slides[currIdx];}
-    
-        function nextSlide() {
-            currIdx = currIdx + 1 >= slides.length ? 0 : currIdx + 1;
-            renderCarousel();
-        }
-        
-        function prevSlide() {
-            currIdx = currIdx - 1 < 0 ? slides.length - 1 : currIdx - 1;
-            renderCarousel();
-        }
-        
-        renderCarousel();
-        
-        const btnNext = document.querySelector('.product-carousel__btn-next');
-        btnNext.addEventListener('click', nextSlide);
-        
-        const btnPrev = document.querySelector('.product-carousel__btn-prev');
-        btnPrev.addEventListener('click', prevSlide);
-        
+// CSS should ensure that only one slide is visible at a time.
+// Example:
+// .carousel { overflow: hidden; width: 100%; position: relative; }
+// .slides { display: flex; transition: transform 0.5s ease-in-out; }
+// .slide { min-width: 100%; box-sizing: border-box; }
+
+const carousel = document.querySelector('.carousel');
+const slidesContainer = carousel.querySelector('.slides');
+const slides = carousel.querySelectorAll('.slide');
+
+let currentIndex = 0;
+const totalSlides = slides.length;
+const slideInterval = 5000; // 5 seconds
+
+// Function to go to the next slide
+function nextSlide() {
+  currentIndex = (currentIndex + 1) % totalSlides;
+  updateCarousel();
+}
+
+// Function to update carousel position
+function updateCarousel() {
+  const offset = -currentIndex * 100; // Assuming each slide is 100% of the container's width
+  slidesContainer.style.transform = `translateX(${offset}%)`;
+}
+
+// Start the automatic sliding
+setInterval(nextSlide, slideInterval);
+
+// Optional: Add event listeners for manual control (if needed)
+// Example:
+// const nextButton = document.querySelector('.next');
+// const prevButton = document.querySelector('.prev');
+
+// nextButton.addEventListener('click', () => {
+//   currentIndex = (currentIndex + 1) % totalSlides;
+//   updateCarousel();
+// });
+
+// prevButton.addEventListener('click', () => {
+//   currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+//   updateCarousel();
+// });
+
         window.addEventListener('resize', renderCarousel);
